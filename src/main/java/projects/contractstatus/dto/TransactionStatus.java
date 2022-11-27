@@ -1,10 +1,12 @@
 package projects.contractstatus.dto;
 
+import projects.contractstatus.entity.Transaction;
+
 import java.util.Date;
 
 public class TransactionStatus {
     private int code;
-    private String status;
+    private Transaction.StatusName status;
 
     private Date time;
 
@@ -15,12 +17,12 @@ public class TransactionStatus {
         this.code = code;
     }
 
-    public String getStatus()
+    public Transaction.StatusName getStatus()
     {
         return status;
     }
 
-    public void setStatus(String status)
+    public void setStatus(Transaction.StatusName status)
     {
         this.status = status;
     }

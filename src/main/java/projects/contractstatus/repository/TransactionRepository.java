@@ -11,5 +11,5 @@ import java.util.Optional;
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
     List<Transaction> findByCode(Code code);
-    Transaction findOneByCodeAndStatus(Code code, String status);
+    Transaction findOneByCodeAndStatus(Code code, Transaction.StatusName status);
 }

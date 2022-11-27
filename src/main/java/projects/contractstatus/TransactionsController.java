@@ -86,7 +86,7 @@ public class TransactionsController {
         tr.setCode(code);
         transactionRepo.save(tr);
 
-        //returning "Created" status
+        //returning "Created" OR "NO_CONTENT"(Updated) status
         return updated ? new ResponseEntity<>(HttpStatus.NO_CONTENT) :
                          new ResponseEntity<>(HttpStatus.CREATED);
     }

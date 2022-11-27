@@ -10,7 +10,7 @@ import java.util.Date;
 @Entity
 @Table(name = "Transactions")
 public class Transaction implements Serializable {
-
+    public enum StatusName {NEW, PENDING, ACTIVE, STAND_BY, FINAL};
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,13 +26,14 @@ public class Transaction implements Serializable {
     @Column(name = "time_i")
     private Date time;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    private String status;
+    private StatusName status;
 
     Transaction() { // jpa only
     }
 
-    public Transaction(Code code, int contract_number, Date time, String status) {
+    public Transaction(Code code, int contract_number, Date time, StatusName status) {
         this.code = code;
         this.contractNumber = contract_number;
         this.time = time;
@@ -56,7 +57,7 @@ public class Transaction implements Serializable {
         return contractNumber;
     }
 
-    public String getStatus() {
+    public StatusName getStatus() {
         return status;
     }
 
@@ -80,7 +81,7 @@ public class Transaction implements Serializable {
         this.time = time;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(StatusName status) {
         this.status = status;
     }
 
