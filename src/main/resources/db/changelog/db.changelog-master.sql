@@ -7,7 +7,6 @@ create table if not exists Codes (
 );
 
 create table if not exists Transactions (
-  id identity PRIMARY KEY,
   code int not null,
   status varchar(10) not null,
   time_i timestamp not null,

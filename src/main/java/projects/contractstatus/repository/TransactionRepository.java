@@ -4,12 +4,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import projects.contractstatus.entity.Code;
 import projects.contractstatus.entity.Transaction;
+import projects.contractstatus.entity.TransactionID;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
-public interface TransactionRepository extends JpaRepository<Transaction, Long> {
-    List<Transaction> findByCode(Code code);
-    Transaction findOneByCodeAndStatus(Code code, Transaction.StatusName status);
+public interface TransactionRepository extends JpaRepository<Transaction, TransactionID> {
+    List<Transaction> findByIdCode(Code code);
+    Transaction findOneByIdCodeAndIdStatus(Code code, TransactionID.StatusName status);
 }

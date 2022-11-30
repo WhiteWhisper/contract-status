@@ -16,6 +16,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import projects.contractstatus.entity.Code;
 import projects.contractstatus.entity.Transaction;
+import projects.contractstatus.entity.TransactionID;
 
 import java.util.Date;
 
@@ -36,21 +37,20 @@ public class HttpRequestTest {
         // Given
         Code cd = new Code(10);
         cd.setId(0L);
-        Transaction tr = new Transaction(cd, 329646, new Date(), Transaction.StatusName.NEW);
+        //TransactionID trId = new TransactionID(cd, 329646, TransactionID.StatusName.NEW);
+        //Transaction tr = new Transaction(trId, new Date());
 
         var request = new HttpPost("http://localhost:" + port + "/transactions/");
         request.setHeader("Content-Type", "application/json");
         request.setEntity(new StringEntity("{\n" +
-                "        \"id\": 1,\n" +
-                "        \"code\": {\n" +
-                "            \"id\": 1,\n" +
-                "            \"code\": 10\n" +
-                "        },\n" +
-                "        \"contractNumber\": 802372,\n" +
-                "        \"time\": \"2022-11-27T16:13:47.839+00:00\",\n" +
-                "        \"status\": \"NEW\"\n" +
+            "           \"code\": {\n" +
+            "               \"id\": 1,\n" +
+            "               \"code\": 10\n" +
+            "           },\n" +
+            "           \"contractNumber\": 802372,\n" +
+            "           \"status\": \"NEW\",\n" +
+                "        \"time\": \"2022-11-27T16:13:47.839+00:00\"\n" +
                 "    }"));
-
         // When
         HttpResponse httpResponse = HttpClientBuilder.create().build().execute(request);
 
@@ -89,7 +89,7 @@ public class HttpRequestTest {
     }
 
     @Test
-    public void getting10thContractStatusShouldReturnOk() throws Exception {
+    public void getting10thContractStatusShouldReturnStatus() throws Exception {
         // Given
         HttpUriRequest request = new HttpGet( "http://localhost:" + port + "/transactions/status/10" );
 
